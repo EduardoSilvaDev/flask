@@ -1,5 +1,5 @@
 from estudo import db
-from datetime import datetime
+from datetime import datetime, timezone
 
 class Contato(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -8,6 +8,6 @@ class Contato(db.Model):
     subject = db.Column(db.String, nullable = True)
     message = db.Column(db.String, nullable = True)
     
-    dt_created = db.Column(db.Datetime, default = datetime.datetime.utcnow())
+    dt_created = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
     active = db.Column(db.Boolean, default = True)
 
