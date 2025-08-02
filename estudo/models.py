@@ -12,3 +12,4 @@ class Contato(db.Model):
     dt_created = db.Column(db.DateTime, default = lambda: datetime.now(timezone.utc))
     active = db.Column(db.Boolean, default = True)
 
+    

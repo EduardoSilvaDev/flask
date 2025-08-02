@@ -39,3 +39,9 @@ def contato():
         db.session.commit()
         
     return render_template('contato.html',context=context)
+
+
+@app.route('/form/')
+def formulario():
+    context={'name':'Eduardo'}
+    return render_template('form.html',context=context)
