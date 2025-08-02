@@ -5,4 +5,6 @@ from estudo import app
 
 # depois disto configurado usa o comando 'flask db init' no terminal para que o banco de dados seja criado, utiliza apenas uma unica vez, é criado as migrations
 
-# 'flask db migrate -m "minha primeira migrate" '
+# 'flask db migrate -m "minha primeira migrate" ' commit
+
+# 'flask db upgrade' salvar o commit (enviar as alteracoes)
