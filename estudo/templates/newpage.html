@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Estados e Capitais</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #888;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align:center; margin-top:20px;"></div>
+        <a href="{{url_for('homepage')}}" style="display:inline-block; padding:10px 20px; background:#1976d2; color:#fff; text-decoration:none; border-radius:4px;">Página Inicial</a>
+    </div>
+    <h2 style="text-align:center;">Tabela de Estados e Capitais</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Estado</th>
+                <th>Capital</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-estados">
+            <!-- Dados serão inseridos aqui -->
+        </tbody>
+    </table>
+    <script>
+    const capitais = {
+        "Acre": "Rio Branco",
+        "Alagoas": "Maceió",
+        "Amapá": "Macapá",
+        "Amazonas": "Manaus",
+        "Bahia": "Salvador",
+        "Ceará": "Fortaleza",
+        "Distrito Federal": "Brasília",
+        "Espírito Santo": "Vitória",
+        "Goiás": "Goiânia",
+        "Maranhão": "São Luís",
+        "Mato Grosso": "Cuiabá",
+        "Mato Grosso do Sul": "Campo Grande",
+        "Minas Gerais": "Belo Horizonte",
+        "Pará": "Belém",
+        "Paraíba": "João Pessoa",
+        "Paraná": "Curitiba",
+        "Pernambuco": "Recife",
+        "Piauí": "Teresina",
+        "Rio de Janeiro": "Rio de Janeiro",
+        "Rio Grande do Norte": "Natal",
+        "Rio Grande do Sul": "Porto Alegre",
+        "Rondônia": "Porto Velho",
+        "Roraima": "Boa Vista",
+        "Santa Catarina": "Florianópolis",
+        "São Paulo": "São Paulo",
+        "Sergipe": "Aracaju",
+        "Tocantins": "Palmas"
+    };
+
+    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+        .then(response => response.json())
+        .then(estados => {
+            const tbody = document.getElementById('tabela-estados');
+            estados.forEach(estado => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${estado.nome}</td>
+                    <td>${capitais[estado.nome] || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        });
+</script>
+
+</body>
+</html>
